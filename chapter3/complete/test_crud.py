@@ -9,7 +9,7 @@ from database import SessionLocal
 test_date = date(2024,4,1)
 
 @pytest.fixture(scope="function")
-def db_session():
+def db_session():pwd
     """This starts a database session and closes it when done"""
     session = SessionLocal()
     yield session
