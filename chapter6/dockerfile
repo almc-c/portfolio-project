@@ -1,0 +1,20 @@
+#dockerfile for chpt 6
+
+# start with slim parent image
+FROM python:3.10-slim
+
+# set the Docker wd
+WORKDIR /code
+
+# copy from the build context dir. to the Docker wd
+COPY requirements.txt /code/
+
+# install the pythong libs from the req's file
+RUN pip install --no-cache-dir --upgrade -r requirements.txt
+
+# cp the code files and db from build context dir
+COPY *.py /code/
+COPY *.db /code/
+
+# launch the uvicorn WS and run the app
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80"]
